@@ -21,7 +21,14 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
         fonts[1].render_to(screen, (250, 300), f"出た！ {last_pulled}", BLACK)
         image = ramen_images.get(last_pulled)
         if image:
-            screen.blit(image, (300, 350))  # 画像の表示位置を調整
+            # 1. 調整したいサイズを (幅, 高さ) で指定します
+            NEW_WIDTH = 250
+            NEW_HEIGHT = 250
+            
+            # 2. 画像を新しいサイズに変換 (scaled_image が新しいSurface)
+            scaled_image = pygame.transform.scale(image, (NEW_WIDTH, NEW_HEIGHT))
+            
+            screen.blit(scaled_image,(250, 50))  # 画像の表示位置を調整
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
     screen.fill(GRAY)
