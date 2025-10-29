@@ -1,3 +1,4 @@
+import os
 import pygame
 
 # 画面設定
@@ -35,3 +36,5 @@ RAMEN_DATA = {
     '家系ラーメン': (0.07, '関東', 'SR'),
     '幻の金のラーメン': (0.05, '全国', 'SSR'),
 }
+
+FONT_PATH = os.path.join("assets", "fonts", "NotoSansCJKjp-Regular.otf")

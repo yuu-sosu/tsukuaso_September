@@ -1,17 +1,22 @@
 import pygame
+import pygame.freetype  # ← 追加
+import os
 from config import *
 from draw import draw_title_screen, draw_gatcha_screen, draw_encyclopedia_screen
 from logic import handle_events
 
 pygame.init()
+pygame.freetype.init()  # ← 追加
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("全国ラーメン図鑑ガチャ")
 clock = pygame.time.Clock()
 
-# フォント
-font_large = pygame.font.Font(None, 48)
-font_medium = pygame.font.Font(None, 36)
-font_small = pygame.font.Font(None, 24)
+# フォント（日本語対応）
+font_path = os.path.join("assets", "fonts", "NotoSansCJKjp-Regular.otf")
+font_large = pygame.freetype.Font(FONT_PATH, 48)
+font_medium = pygame.freetype.Font(FONT_PATH, 36)
+font_small = pygame.freetype.Font(FONT_PATH, 24)
 fonts = [font_large, font_medium, font_small]
 
 # 状態変数
