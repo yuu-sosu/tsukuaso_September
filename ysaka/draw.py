@@ -7,7 +7,7 @@ def draw_title_screen(screen, font):
     pygame.draw.rect(screen, GREEN, BUTTON_START)
     font.render_to(screen, (BUTTON_START.x + 40, BUTTON_START.y + 20), "スタート", WHITE)
 
-def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled):
+def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
     screen.fill(WHITE)
     pygame.draw.rect(screen, RED, BUTTON_GATCHA)
     fonts[1].render_to(screen, (BUTTON_GATCHA.x + 60, BUTTON_GATCHA.y + 30), "ガチャを引く！", WHITE)
@@ -18,7 +18,10 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled):
     fonts[2].render_to(screen, (20, 550), f"ガチャ回数: {ramen_count}", BLACK)
 
     if last_pulled:
-        fonts[1].render_to(screen, (250, 350), f"出た！ {last_pulled}", BLACK)
+        fonts[1].render_to(screen, (250, 300), f"出た！ {last_pulled}", BLACK)
+        image = ramen_images.get(last_pulled)
+        if image:
+            screen.blit(image, (300, 350))  # 画像の表示位置を調整
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
     screen.fill(GRAY)

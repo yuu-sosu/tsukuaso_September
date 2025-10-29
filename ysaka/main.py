@@ -25,6 +25,10 @@ ramen_count = 0
 last_pulled = None
 encyclopedia = {name: (0, 0) for name in RAMEN_DATA}
 running = True
+ramen_images = {
+    name: pygame.image.load(info['image']).convert_alpha()
+    for name, info in RAMEN_DATA.items()
+}
 
 while running:
     for event in pygame.event.get():
@@ -33,7 +37,7 @@ while running:
     if state == STATE_TITLE:
         draw_title_screen(screen, font_large)
     elif state == STATE_GATCHA:
-        draw_gatcha_screen(screen, fonts, ramen_count, last_pulled)
+        draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images)
     elif state == STATE_ENCYCLOPEDIA:
         draw_encyclopedia_screen(screen, fonts, encyclopedia, RAMEN_DATA, ramen_count)
 

@@ -28,13 +28,49 @@ BUTTON_TO_GATCHA = pygame.Rect(20, 30, 130, 50)
 
 # ラーメンデータ
 RAMEN_DATA = {
-    '博多ラーメン': (0.30, '九州', 'N'),
-    '札幌味噌ラーメン': (0.25, '北海道', 'N'),
-    '喜多方ラーメン': (0.15, '東北', 'R'),
-    '尾道ラーメン': (0.10, '中国', 'R'),
-    '和歌山ラーメン': (0.08, '近畿', 'SR'),
-    '家系ラーメン': (0.07, '関東', 'SR'),
-    '幻の金のラーメン': (0.05, '全国', 'SSR'),
+    '博多ラーメン': {
+        'weight': 0.30,
+        'region': '九州',
+        'rarity': 'N',
+        'image': 'assets/images/tonkotsu.png'
+    },
+    '札幌味噌ラーメン': {
+        'weight': 0.25,
+        'region': '北海道',
+        'rarity': 'N',
+        'image': 'assets/images/sapporo.png'
+    },
+    '喜多方ラーメン': {
+        'weight': 0.15,
+        'region': '東北',
+        'rarity': 'R',
+        'image': 'assets/images/syouyu.png'
+    },
+    '尾道ラーメン': {
+        'weight': 0.10,
+        'region': '中国',
+        'rarity': 'R',
+        'image': 'assets/images/abura.png'
+    },
+    '和歌山ラーメン': {
+        'weight': 0.08,
+        'region': '近畿',
+        'rarity': 'SR',
+        'image': 'assets/images/tukemen.png'
+    },
+    '家系ラーメン': {
+        'weight': 0.07,
+        'region': '関東',
+        'rarity': 'SR',
+        'image': 'assets/images/ie.png'
+    },
+    '幻の金のラーメン': {
+        'weight': 0.05,
+        'region': '全国',
+        'rarity': 'SSR',
+        'image': 'assets/images/ziro.png'
+    },
 }
+
 
 FONT_PATH = os.path.join("assets", "fonts", "NotoSansCJKjp-Regular.otf")

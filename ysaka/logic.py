@@ -5,7 +5,7 @@ from config import STATE_TITLE, STATE_GATCHA, STATE_ENCYCLOPEDIA
 
 def pull_ramen():
     names = list(RAMEN_DATA.keys())
-    weights = [RAMEN_DATA[name][0] for name in names]
+    weights = [RAMEN_DATA[name]['weight'] for name in names]
     return random.choices(names, weights=weights)[0]
 
 def update_encyclopedia(encyclopedia, ramen_name, total_pulls):
