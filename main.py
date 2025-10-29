@@ -19,15 +19,6 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 FPS = 60
 
-# 色定義
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GRAY = (150, 150, 150)
-RED = (255, 0, 0)
-GREEN = (0, 150, 0)
-YELLOW = (255, 255, 0)
-BLUE = (0, 0, 255)
-
 # ゲームの状態
 STATE_GATCHA = 1
 STATE_ENCYCLOPEDIA = 2
@@ -60,10 +51,7 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("全国ラーメン図鑑コンプリート")
 clock = pygame.time.Clock()
-font_large = pygame
-import pygame
-import random
-import timeme.font.Font
+font_large = pygame.font.Font(None, 48)
 font_medium = pygame.font.Font(None, 36)
 font_small = pygame.font.Font(None, 24)
 
@@ -87,21 +75,21 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        
+
         # マウスイベントを現在の状態に合わせて処理
         if current_state == STATE_GATCHA:
-            handle_gatcha_events(event)
+            handle_gatcha_events(event, ramen_count)
         elif current_state == STATE_ENCYCLOPEDIA:
             handle_encyclopedia_events(event)
 
     # 2. ロジック更新 (クッキークリッカー要素)
-    update_clicker_logic() 
+    update_clicker_logic(BASE_RAMEN_GAIN_RATE_MS, LAST_TICK_TIME, ramen_count)
 
     # 3. 描画処理
     if current_state == STATE_GATCHA:
-        draw_gatcha_screen()
+        draw_gatcha_screen(screen, font_large, font_medium, font_small, ramen_count, last_pulled_ramen)
     elif current_state == STATE_ENCYCLOPEDIA:
-        draw_encyclopedia_screen()
+        draw_encyclopedia_screen(srceen, font_large, font_medium, font_small, ramen_count, last_pulled_ramen)
 
     # 4. 画面更新とフレームレート設定
     pygame.display.flip()
