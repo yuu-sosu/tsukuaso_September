@@ -21,51 +21,57 @@ STATE_GATCHA = 1
 STATE_ENCYCLOPEDIA = 2
 
 # ボタン定義
-BUTTON_START = pygame.Rect(300, 300, 200, 80)
+BUTTON_START = pygame.Rect(630, 500, 150, 60)
 BUTTON_GATCHA = pygame.Rect(250, 450, 300, 100)
 BUTTON_TO_ENCYCLOPEDIA = pygame.Rect(650, 30, 130, 50)
 BUTTON_TO_GATCHA = pygame.Rect(20, 30, 130, 50)
 
 # ラーメンデータ
 RAMEN_DATA = {
-    '博多ラーメン': {
-        'weight': 0.30,
-        'region': '九州',
+    '豚骨': {
+        'weight': 0.20,
+        'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/tonkotsu.png'
     },
-    '札幌味噌ラーメン': {
-        'weight': 0.25,
-        'region': '北海道',
+    '醤油': {
+        'weight': 0.20,
+        'region': '全国',
         'rarity': 'N',
-        'image': 'assets/images/sapporo.png'
-    },
-    '喜多方ラーメン': {
-        'weight': 0.15,
-        'region': '東北',
-        'rarity': 'R',
         'image': 'assets/images/syouyu.png'
     },
-    '尾道ラーメン': {
-        'weight': 0.10,
-        'region': '中国',
+    'つけ麺': {
+        'weight': 0.15,
+        'region': '全国',
+        'rarity': 'R',
+        'image': 'assets/images/tukemen.png'
+    },
+    '油そば': {
+        'weight': 0.15,
+        'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/abura.png'
     },
-    '和歌山ラーメン': {
-        'weight': 0.08,
-        'region': '近畿',
+    '札幌ラーメン': {
+        'weight': 0.10,
+        'region': '北海道',
         'rarity': 'SR',
-        'image': 'assets/images/tukemen.png'
+        'image': 'assets/images/sapporo.png'
     },
-    '家系ラーメン': {
-        'weight': 0.07,
+    '熊本ラーメン': {
+        'weight': 0.10,
+        'region': '九州',
+        'rarity': 'SR',
+        'image': 'assets/images/kumamoto.png'
+    },
+    '家系': {
+        'weight': 0.099,
         'region': '関東',
         'rarity': 'SR',
         'image': 'assets/images/ie.png'
     },
-    '幻の金のラーメン': {
-        'weight': 0.05,
+    '次郎系': {
+        'weight': 0.001,
         'region': '全国',
         'rarity': 'SSR',
         'image': 'assets/images/ziro.png'

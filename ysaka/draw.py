@@ -1,11 +1,10 @@
 import pygame
 from config import *
 
-def draw_title_screen(screen, font):
-    screen.fill(WHITE)
-    font.render_to(screen, (200, 150), "全国ラーメン図鑑ガチャ", BLACK)
+def draw_title_screen(screen, font, background_image):
+    screen.blit(background_image, (0, 0))
     pygame.draw.rect(screen, GREEN, BUTTON_START)
-    font.render_to(screen, (BUTTON_START.x + 40, BUTTON_START.y + 20), "スタート", WHITE)
+    font.render_to(screen, (BUTTON_START.x + 10, BUTTON_START.y + 10), "スタート", WHITE)
 
 def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
     screen.fill(WHITE)
@@ -24,10 +23,9 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
             # 1. 調整したいサイズを (幅, 高さ) で指定します
             NEW_WIDTH = 250
             NEW_HEIGHT = 250
-            
+
             # 2. 画像を新しいサイズに変換 (scaled_image が新しいSurface)
             scaled_image = pygame.transform.scale(image, (NEW_WIDTH, NEW_HEIGHT))
-            
             screen.blit(scaled_image,(250, 50))  # 画像の表示位置を調整
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
@@ -35,12 +33,22 @@ def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pull
     pygame.draw.rect(screen, GREEN, BUTTON_TO_GATCHA)
     fonts[2].render_to(screen, (BUTTON_TO_GATCHA.x + 30, BUTTON_TO_GATCHA.y + 10), "戻る", WHITE)
 
+    rarity_colors = {
+        'N': BLACK,
+        'R': BLUE,
+        'SR': GREEN,
+        'SSR': YELLOW
+    }
+
     y = 100
     discovered = 0
     for name in ramen_data:
         count, _ = encyclopedia[name]
         if count > 0:
-            text = f"{name} - {count}回"
+            rarity = ramen_data[name]['rarity']
+            text = f"{name} - {count}回[{rarity}]"
+            color = rarity_colors.get(rarity, BLACK)
+            fonts[2].render_to(screen, (50, y), text, color)
             discovered += 1
         else:
             text = "？？？"

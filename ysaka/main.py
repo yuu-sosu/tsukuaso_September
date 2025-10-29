@@ -11,6 +11,8 @@ pygame.freetype.init()  # ← 追加
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("全国ラーメン図鑑ガチャ")
 clock = pygame.time.Clock()
+background_image = pygame.image.load("assets/images/cover.png").convert()
+background_image = pygame.transform.scale(background_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # フォント（日本語対応）
 font_path = os.path.join("assets", "fonts", "NotoSansCJKjp-Regular.otf")
@@ -35,7 +37,7 @@ while running:
         running, state, ramen_count, last_pulled = handle_events(event, state, ramen_count, encyclopedia, last_pulled)
 
     if state == STATE_TITLE:
-        draw_title_screen(screen, font_large)
+        draw_title_screen(screen, font_medium, background_image)
     elif state == STATE_GATCHA:
         draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images)
     elif state == STATE_ENCYCLOPEDIA:
