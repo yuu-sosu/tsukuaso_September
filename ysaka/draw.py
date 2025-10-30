@@ -8,11 +8,14 @@ def draw_title_screen(screen, font, background_image):
 
 
 def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
-    screen.fill(WHITE)
+    # 背景画像の描画
+    background = pygame.image.load("assets/images/second_background.png")  # 背景画像の読み込み
+    background = pygame.transform.scale(background, screen.get_size())    # 画面サイズに合わせる
+    screen.blit(background, (0, 0))                                       # 背景を描画
 
     # ガチャボタン
     pygame.draw.rect(screen, RED, BUTTON_GATCHA)
-    fonts[1].render_to(screen, (BUTTON_GATCHA.x + 60, BUTTON_GATCHA.y + 30), "ガチャを引く！", WHITE)
+    fonts[1].render_to(screen, (BUTTON_GATCHA.x + 30, BUTTON_GATCHA.y + 30), "ガチャを引く！", WHITE)
 
     # 図鑑ボタン
     pygame.draw.rect(screen, BLUE, BUTTON_TO_ENCYCLOPEDIA)
@@ -43,7 +46,7 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
         image = ramen_images.get(last_pulled)
         if image:
             scaled_image = pygame.transform.scale(image, (250, 250))
-            screen.blit(scaled_image, (250, 50))
+            screen.blit(scaled_image, (275, 50))
 
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
