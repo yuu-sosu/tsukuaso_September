@@ -95,37 +95,37 @@ RAMEN_DATA = {
         'image': 'assets/images/okinawa.png'
     },
     '札幌ラーメン': {
-        'weight': 0.0019,
+        'weight': 0.0018,
         'region': '北海道',
         'rarity': 'SR',
         'image': 'assets/images/sapporo.png'
     },
     '熊本ラーメン': {
-        'weight': 0.0019,
+        'weight': 0.0018,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/kumamoto.png'
     },
     '喜多方ラーメン': {
-        'weight': 0.0019,
+        'weight': 0.0018,
         'region': '東北',
         'rarity': 'SR',
         'image': 'assets/images/kitakata.png'
     },
     '家系': {
-        'weight': 0.0019,
+        'weight': 0.0018,
         'region': '関東',
         'rarity': 'SR',
         'image': 'assets/images/ie.png'
     },
     'ちゃんぽん': {
-        'weight': 0.0019,
+        'weight': 0.0018,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/tyanpon.png'
     },
     '次郎系': {
-        'weight': 0.0005,
+        'weight': 0.001,
         'region': '全国',
         'rarity': 'SSR',
         'image': 'assets/images/ziro.png'
