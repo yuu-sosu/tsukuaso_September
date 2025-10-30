@@ -43,6 +43,12 @@ RAMEN_DATA = {
         'rarity': 'N',
         'image': 'assets/images/syouyu.png'
     },
+    '野菜ラーメン': {
+        'weight': 0.06,
+        'region': '全国',
+        'rarity': 'N',
+        'image': 'assets/images/yasai.png'
+    },
     'つけ麺': {
         'weight': 0.15,
         'region': '全国',
@@ -54,6 +60,30 @@ RAMEN_DATA = {
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/abura.png'
+    },
+    '台湾ラーメン': {
+        'weight': 0.08,
+        'region': '東海',
+        'rarity': 'R',
+        'image': 'assets/images/taiwan.png'
+    },
+    '味噌ラーメン': {
+        'weight': 0.06,
+        'region': '北海道',
+        'rarity': 'R',
+        'image': 'assets/images/miso.png'
+    },
+    '担々麺': {
+        'weight': 0.05,
+        'region': '全国',
+        'rarity': 'R',
+        'image': 'assets/images/tantanmen.png'
+    },
+    '沖縄ラーメン': {
+        'weight': 0.05,
+        'region': '沖縄',
+        'rarity': 'R',
+        'image': 'assets/images/okinawa.png'
     },
     '札幌ラーメン': {
         'weight': 0.10,
@@ -67,18 +97,30 @@ RAMEN_DATA = {
         'rarity': 'SR',
         'image': 'assets/images/kumamoto.png'
     },
+    '喜多方ラーメン': {
+        'weight': 0.07,
+        'region': '東北',
+        'rarity': 'SR',
+        'image': 'assets/images/kitakata.png'
+    },
     '家系': {
         'weight': 0.099,
         'region': '関東',
         'rarity': 'SR',
         'image': 'assets/images/ie.png'
     },
+    'ちゃんぽん': {
+        'weight': 0.07,
+        'region': '九州',
+        'rarity': 'SR',
+        'image': 'assets/images/tyanpon.png'
+    },
     '次郎系': {
         'weight': 0.001,
         'region': '全国',
         'rarity': 'SSR',
         'image': 'assets/images/ziro.png'
-    },
+    }
 }
 
 

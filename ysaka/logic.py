@@ -2,6 +2,7 @@ import pygame
 import random
 from config import RAMEN_DATA, BUTTON_GATCHA, BUTTON_TO_ENCYCLOPEDIA, BUTTON_TO_GATCHA, BUTTON_START
 from config import STATE_TITLE, STATE_GATCHA, STATE_ENCYCLOPEDIA
+from game_logic import start_timer, pause_timer, resume_timer
 
 def pull_ramen():
     names = list(RAMEN_DATA.keys())
@@ -30,9 +31,11 @@ def handle_events(event, state, ramen_count, encyclopedia, last_pulled):
                 last_pulled = ramen_name
                 update_encyclopedia(encyclopedia, ramen_name, ramen_count)
             elif BUTTON_TO_ENCYCLOPEDIA.collidepoint(event.pos):
+                pause_timer()
                 state = STATE_ENCYCLOPEDIA
 
         elif state == STATE_ENCYCLOPEDIA and BUTTON_TO_GATCHA.collidepoint(event.pos):
+            resume_timer()
             state = STATE_GATCHA
 
     return True, state, ramen_count, last_pulled

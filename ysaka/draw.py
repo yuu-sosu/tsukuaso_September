@@ -66,8 +66,6 @@ def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pull
     background = pygame.transform.scale(background, screen.get_size())
     screen.blit(background, (0, 0))
 
-    # タイマー表示（図鑑画面でも表示）
-    draw_timer(screen, fonts[2])
 
     # 戻るボタン
     pygame.draw.rect(screen, GREEN, BUTTON_TO_GATCHA)
