@@ -47,9 +47,9 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
     if last_pulled:
         rarity_colors = {
             "SSR": (255, 215, 0),    # 金色
-            "SR":  (186, 85, 211),   # 紫
+            "SR":  (0, 255, 0),   # 紫
             "R":   (30, 144, 255),   # 青
-            "N":   (169, 169, 169),  # グレー
+            "N":   (255, 255, 255),  # グレー
         }
 
         ramen_info = RAMEN_DATA.get(last_pulled, {})
@@ -65,22 +65,21 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
             scaled_image = pygame.transform.scale(image, (250, 250))
             screen.blit(scaled_image, (275, 50))
 
-def draw_gameclear_screen(screen, font, ramen_count):
+def draw_gameclear_screen(screen, font, ramen_count, formatted_time):
     """ゲームクリア画面を描画"""
-    screen.fill((0, 0, 0))  # 背景を黒に
+    screen.fill((0, 0, 0))
 
-    # メインメッセージ
     main_text = "おめでとう！全ラーメン制覇！"
-    font.render_to(screen, (100, 250), main_text, (255, 215, 0))  # 金色
+    font.render_to(screen, (100, 250), main_text, (255, 215, 0))
 
-    # 残り時間表示
-    remaining = get_remaining_time()
-    time_text = f"残り時間: {remaining} 秒"
-    font.render_to(screen, (100, 350), time_text, (255, 100, 100))  # 赤色
+    ## 文字列をそのまま描画
+    #time_text = f"残り時間: {formatted_time}"
+    #font.render_to(screen, (100, 350), time_text, (255, 100, 100))
 
-    # ガチャ回数表示
     count_text = f"ガチャ回数: {ramen_count}"
-    font.render_to(screen, (100, 400), count_text, (0, 255, 0))  # 緑色
+    font.render_to(screen, (100, 400), count_text, (0, 255, 0))
+
+
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
     # 背景画像を描画
@@ -131,4 +130,4 @@ def draw_gameover_screen(screen, font):
     text1 = "残念！時間切れです…"
     text2 = "もう一度挑戦してください！"
     font.render_to(screen, (100, 250), text1, (255, 0, 0))
-    font.render_to(screen, (100, 300), text2, (255, 100, 100))
+    font.render_to(screen, (100, 300), text2, (255, 0, 0))

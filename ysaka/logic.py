@@ -1,8 +1,7 @@
 import pygame
 import random
-from config import RAMEN_DATA, BUTTON_GATCHA, BUTTON_TO_ENCYCLOPEDIA, BUTTON_TO_GATCHA, BUTTON_START
-from config import STATE_TITLE, STATE_GATCHA, STATE_ENCYCLOPEDIA
-from game_logic import start_timer, pause_timer, resume_timer
+from config import *
+from game_logic import *
 
 def pull_ramen():
     names = list(RAMEN_DATA.keys())
@@ -19,15 +18,16 @@ def update_encyclopedia(encyclopedia, ramen_name, total_pulls):
 def all_ramen_collected(encyclopedia):
     """全てのラーメンが1回以上引かれているか"""
     return all(count > 0 for count, _ in encyclopedia.values())
-
+	
 def handle_events(event, state, ramen_count, encyclopedia, last_pulled):
+    global final_remaining_time  # 追加
     if event.type == pygame.QUIT:
         return False, state, ramen_count, last_pulled
 
     if event.type == pygame.MOUSEBUTTONDOWN:
         if state == STATE_TITLE and BUTTON_START.collidepoint(event.pos):
             state = STATE_GATCHA
-            start_timer()  # ゲーム開始時にタイマー開始
+            start_timer()  # タイマー開始
 
         elif state == STATE_GATCHA:
             if BUTTON_GATCHA.collidepoint(event.pos):
@@ -36,8 +36,10 @@ def handle_events(event, state, ramen_count, encyclopedia, last_pulled):
                 last_pulled = ramen_name
                 update_encyclopedia(encyclopedia, ramen_name, ramen_count)
 
-                # ここでコンプリート判定
+                # コンプリート判定
                 if all_ramen_collected(encyclopedia):
+                    if final_remaining_time is None:
+                        final_remaining_time = get_remaining_time()  # ここで固定
                     state = STATE_GAMECLEAR
 
             elif BUTTON_TO_ENCYCLOPEDIA.collidepoint(event.pos):

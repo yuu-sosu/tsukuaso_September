@@ -24,12 +24,19 @@ STATE_GAMEOVER = 4
 
 # 制限時間（秒）
 GAME_TIME_LIMIT = 180  # 3分
+# config.py
+final_remaining_time = None
+
 
 # ボタン定義
 BUTTON_START = pygame.Rect(630, 500, 150, 60)
 BUTTON_GATCHA = pygame.Rect(250, 450, 300, 100)
 BUTTON_TO_ENCYCLOPEDIA = pygame.Rect(650, 30, 130, 50)
 BUTTON_TO_GATCHA = pygame.Rect(20, 30, 130, 50)
+
+GAME_TIME_LIMIT = 180  # 秒
+start_time = pygame.time.get_ticks()  # ゲーム開始時間
+paused_time = 0  # 一時停止時間があればここで管理
 
 # ラーメンデータ
 RAMEN_DATA = {
