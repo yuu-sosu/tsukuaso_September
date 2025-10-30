@@ -40,92 +40,92 @@ paused_time = 0  # 一時停止時間があればここで管理
 
 # ラーメンデータ
 RAMEN_DATA = {
-    '豚骨': {
-        'weight': 0.15,
+    '豚骨ラーメン': {
+        'weight': 0.25,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/tonkotsu.png'
     },
-    '醤油': {
-        'weight': 0.15,
+    '醤油ラーメン': {
+        'weight': 0.25,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/syouyu.png'
     },
     '野菜ラーメン': {
-        'weight': 0.15,
+        'weight': 0.25,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/yasai.png'
     },
     'つけ麺': {
-        'weight': 0.08,
+        'weight': 0.04,
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/tukemen.png'
     },
     '油そば': {
-        'weight': 0.08,
+        'weight': 0.04,
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/abura.png'
     },
     '台湾ラーメン': {
-        'weight': 0.08,
+        'weight': 0.04,
         'region': '東海',
         'rarity': 'R',
         'image': 'assets/images/taiwan.png'
     },
     '味噌ラーメン': {
-        'weight': 0.08,
+        'weight': 0.04,
         'region': '北海道',
         'rarity': 'R',
         'image': 'assets/images/miso.png'
     },
     '担々麺': {
-        'weight': 0.05,
+        'weight': 0.04,
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/tantanmen.png'
     },
     '沖縄ラーメン': {
-        'weight': 0.05,
+        'weight': 0.04,
         'region': '沖縄',
         'rarity': 'R',
         'image': 'assets/images/okinawa.png'
     },
     '札幌ラーメン': {
-        'weight': 0.03,
+        'weight': 0.0019,
         'region': '北海道',
         'rarity': 'SR',
         'image': 'assets/images/sapporo.png'
     },
     '熊本ラーメン': {
-        'weight': 0.03,
+        'weight': 0.0019,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/kumamoto.png'
     },
     '喜多方ラーメン': {
-        'weight': 0.03,
+        'weight': 0.0019,
         'region': '東北',
         'rarity': 'SR',
         'image': 'assets/images/kitakata.png'
     },
     '家系': {
-        'weight': 0.099,
+        'weight': 0.0019,
         'region': '関東',
         'rarity': 'SR',
         'image': 'assets/images/ie.png'
     },
     'ちゃんぽん': {
-        'weight': 0.02,
+        'weight': 0.0019,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/tyanpon.png'
     },
     '次郎系': {
-        'weight': 0.001,
+        'weight': 0.0005,
         'region': '全国',
         'rarity': 'SSR',
         'image': 'assets/images/ziro.png'
