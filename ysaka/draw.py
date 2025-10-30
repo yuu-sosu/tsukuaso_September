@@ -88,35 +88,43 @@ def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pull
     background = pygame.transform.scale(background, screen.get_size())
     screen.blit(background, (0, 0))
 
-
     # 戻るボタン
     pygame.draw.rect(screen, GREEN, BUTTON_TO_GATCHA)
     fonts[2].render_to(screen, (BUTTON_TO_GATCHA.x + 30, BUTTON_TO_GATCHA.y + 10), "戻る", WHITE)
 
-    rarity_colors = {
-        'N': BLACK,
-        'R': BLUE,
-        'SR': GREEN,
-        'SSR': YELLOW
-    }
+    rarity_colors = {'N': BLACK, 'R': BLUE, 'SR': GREEN, 'SSR': YELLOW}
 
-    y = 100
+    # 2列にする設定
+    x_positions = [50, 400]  # 左列・右列のX座標
+    y_start = 100
+    y_step = 30
+    items_per_column = (len(ramen_data) + 1) // 2  # 列ごとのアイテム数
+
     discovered = 0
-    for name in ramen_data:
+    for idx, name in enumerate(ramen_data):
+        # 列と行を計算
+        col = 0 if idx < items_per_column else 1
+        row = idx if col == 0 else idx - items_per_column
+        x = x_positions[col]
+        y = y_start + row * y_step
+
         count, _ = encyclopedia[name]
         if count > 0:
             rarity = ramen_data[name]['rarity']
             text = f"{name} - {count}回 [{rarity}]"
             color = rarity_colors.get(rarity, BLACK)
-            fonts[2].render_to(screen, (50, y), text, color)
             discovered += 1
         else:
-            fonts[2].render_to(screen, (50, y), "？？？", BLACK)
-        y += 30
+            text = "？？？"
+            color = BLACK
 
+        fonts[2].render_to(screen, (x, y), text, color)
+
+    # コンプリート率とガチャ回数は下にまとめて表示
     rate = int((discovered / len(ramen_data)) * 100)
-    fonts[2].render_to(screen, (50, y + 20), f"コンプリート率: {rate}%", BLACK)
-    fonts[2].render_to(screen, (50, y + 50), f"ガチャ回数: {total_pulls}", BLACK)
+    fonts[2].render_to(screen, (50, y_start + items_per_column * y_step + 20), f"コンプリート率: {rate}%", BLACK)
+    fonts[2].render_to(screen, (50, y_start + items_per_column * y_step + 50), f"ガチャ回数: {total_pulls}", BLACK)
+
 
 def draw_gameover_screen(screen, font):
     screen.fill((0, 0, 0))
