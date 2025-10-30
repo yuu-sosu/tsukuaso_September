@@ -50,7 +50,12 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
 
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
-    screen.fill(GRAY)
+    # 背景画像を描画
+    background = pygame.image.load("assets/images/encyclopedia_bg.png")
+    background = pygame.transform.scale(background, screen.get_size())
+    screen.blit(background, (0, 0))
+
+    # 戻るボタン
     pygame.draw.rect(screen, GREEN, BUTTON_TO_GATCHA)
     fonts[2].render_to(screen, (BUTTON_TO_GATCHA.x + 30, BUTTON_TO_GATCHA.y + 10), "戻る", WHITE)
 
