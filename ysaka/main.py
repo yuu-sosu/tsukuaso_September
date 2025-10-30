@@ -4,6 +4,7 @@ import os
 from config import *
 from draw import draw_title_screen, draw_gatcha_screen, draw_encyclopedia_screen
 from logic import handle_events
+from game_logic import start_timer
 
 pygame.init()
 pygame.freetype.init()  # ← 追加
@@ -31,6 +32,8 @@ ramen_images = {
     name: pygame.image.load(info['image']).convert_alpha()
     for name, info in RAMEN_DATA.items()
 }
+
+start_timer()
 
 while running:
     for event in pygame.event.get():

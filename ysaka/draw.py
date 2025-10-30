@@ -1,5 +1,7 @@
 import pygame
 from config import *
+from game_logic import get_remaining_time  # ← タイマー用関数をインポート！
+
 
 def draw_title_screen(screen, font, background_image):
     screen.blit(background_image, (0, 0))
@@ -7,11 +9,22 @@ def draw_title_screen(screen, font, background_image):
     font.render_to(screen, (BUTTON_START.x + 10, BUTTON_START.y + 10), "スタート", WHITE)
 
 
+def draw_timer(screen, font):
+    """左上に残り時間を表示"""
+    remaining = get_remaining_time()
+    text = f"残り時間: {remaining} 秒"
+    # 👇 引数の順番とカッコを修正
+    font.render_to(screen, (20, 20), text, RED)
+
+
 def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
     # 背景画像の描画
     background = pygame.image.load("assets/images/second_background.png")  # 背景画像の読み込み
     background = pygame.transform.scale(background, screen.get_size())    # 画面サイズに合わせる
     screen.blit(background, (0, 0))                                       # 背景を描画
+
+    # タイマー表示
+    draw_timer(screen, fonts[2])
 
     # ガチャボタン
     pygame.draw.rect(screen, RED, BUTTON_GATCHA)
@@ -26,7 +39,6 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
 
     # 直近で引いたラーメンの表示
     if last_pulled:
-        # レア度ごとの色
         rarity_colors = {
             "SSR": (255, 215, 0),    # 金色
             "SR":  (186, 85, 211),   # 紫
@@ -34,7 +46,6 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
             "N":   (169, 169, 169),  # グレー
         }
 
-        # last_pulledのラーメンデータからレア度を取得
         ramen_info = RAMEN_DATA.get(last_pulled, {})
         rarity = ramen_info.get("rarity", "N")
         color = rarity_colors.get(rarity, (0, 0, 0))
@@ -54,6 +65,9 @@ def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pull
     background = pygame.image.load("assets/images/encyclopedia_bg.png")
     background = pygame.transform.scale(background, screen.get_size())
     screen.blit(background, (0, 0))
+
+    # タイマー表示（図鑑画面でも表示）
+    draw_timer(screen, fonts[2])
 
     # 戻るボタン
     pygame.draw.rect(screen, GREEN, BUTTON_TO_GATCHA)

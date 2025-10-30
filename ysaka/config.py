@@ -20,6 +20,9 @@ STATE_TITLE = 0
 STATE_GATCHA = 1
 STATE_ENCYCLOPEDIA = 2
 
+# 制限時間（秒）
+GAME_TIME_LIMIT = 180  # 3分
+
 # ボタン定義
 BUTTON_START = pygame.Rect(630, 500, 150, 60)
 BUTTON_GATCHA = pygame.Rect(250, 450, 300, 100)
