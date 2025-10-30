@@ -19,6 +19,8 @@ BLUE = (0, 0, 255)
 STATE_TITLE = 0
 STATE_GATCHA = 1
 STATE_ENCYCLOPEDIA = 2
+STATE_GAMECLEAR = 3   # ← 追加
+STATE_GAMEOVER = 4
 
 # 制限時間（秒）
 GAME_TIME_LIMIT = 180  # 3分
@@ -32,31 +34,31 @@ BUTTON_TO_GATCHA = pygame.Rect(20, 30, 130, 50)
 # ラーメンデータ
 RAMEN_DATA = {
     '豚骨': {
-        'weight': 0.20,
+        'weight': 0.15,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/tonkotsu.png'
     },
     '醤油': {
-        'weight': 0.20,
+        'weight': 0.15,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/syouyu.png'
     },
     '野菜ラーメン': {
-        'weight': 0.06,
+        'weight': 0.15,
         'region': '全国',
         'rarity': 'N',
         'image': 'assets/images/yasai.png'
     },
     'つけ麺': {
-        'weight': 0.15,
+        'weight': 0.08,
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/tukemen.png'
     },
     '油そば': {
-        'weight': 0.15,
+        'weight': 0.08,
         'region': '全国',
         'rarity': 'R',
         'image': 'assets/images/abura.png'
@@ -68,7 +70,7 @@ RAMEN_DATA = {
         'image': 'assets/images/taiwan.png'
     },
     '味噌ラーメン': {
-        'weight': 0.06,
+        'weight': 0.08,
         'region': '北海道',
         'rarity': 'R',
         'image': 'assets/images/miso.png'
@@ -86,19 +88,19 @@ RAMEN_DATA = {
         'image': 'assets/images/okinawa.png'
     },
     '札幌ラーメン': {
-        'weight': 0.10,
+        'weight': 0.03,
         'region': '北海道',
         'rarity': 'SR',
         'image': 'assets/images/sapporo.png'
     },
     '熊本ラーメン': {
-        'weight': 0.10,
+        'weight': 0.03,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/kumamoto.png'
     },
     '喜多方ラーメン': {
-        'weight': 0.07,
+        'weight': 0.03,
         'region': '東北',
         'rarity': 'SR',
         'image': 'assets/images/kitakata.png'
@@ -110,7 +112,7 @@ RAMEN_DATA = {
         'image': 'assets/images/ie.png'
     },
     'ちゃんぽん': {
-        'weight': 0.07,
+        'weight': 0.02,
         'region': '九州',
         'rarity': 'SR',
         'image': 'assets/images/tyanpon.png'

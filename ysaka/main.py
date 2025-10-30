@@ -2,9 +2,9 @@ import pygame
 import pygame.freetype  # ← 追加
 import os
 from config import *
-from draw import draw_title_screen, draw_gatcha_screen, draw_encyclopedia_screen
+from draw import draw_title_screen, draw_gatcha_screen, draw_encyclopedia_screen, draw_gameclear_screen, draw_gameover_screen
 from logic import handle_events
-from game_logic import start_timer
+from game_logic import start_timer, get_remaining_time
 
 pygame.init()
 pygame.freetype.init()  # ← 追加
@@ -33,19 +33,44 @@ ramen_images = {
     for name, info in RAMEN_DATA.items()
 }
 
+# ゲーム開始タイマー
 start_timer()
 
 while running:
     for event in pygame.event.get():
-        running, state, ramen_count, last_pulled = handle_events(event, state, ramen_count, encyclopedia, last_pulled)
+        running, state, ramen_count, last_pulled = handle_events(
+            event, state, ramen_count, encyclopedia, last_pulled
+        )
 
+    # ガチャ画面・図鑑画面で残り時間をチェック
+    if state in [STATE_GATCHA, STATE_ENCYCLOPEDIA]:
+        remaining = get_remaining_time()
+        if remaining <= 0:
+            state = STATE_GAMEOVER  # タイムアップでゲームオーバー
+
+    # 状態ごとの画面描画
     if state == STATE_TITLE:
         draw_title_screen(screen, font_medium, background_image)
+
     elif state == STATE_GATCHA:
         draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images)
+        # 図鑑コンプリート判定
+        if all(count > 0 for count, _ in encyclopedia.values()):
+            state = STATE_GAMECLEAR
+
     elif state == STATE_ENCYCLOPEDIA:
         draw_encyclopedia_screen(screen, fonts, encyclopedia, RAMEN_DATA, ramen_count)
+        # 図鑑コンプリート判定（戻ってきたときも）
+        if all(count > 0 for count, _ in encyclopedia.values()):
+            state = STATE_GAMECLEAR
 
+    elif state == STATE_GAMECLEAR:
+        draw_gameclear_screen(screen, font_medium, ramen_count)
+
+    elif state == STATE_GAMEOVER:
+        draw_gameover_screen(screen, font_medium)
+
+    # 画面更新
     pygame.display.flip()
     clock.tick(FPS)
 

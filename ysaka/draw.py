@@ -10,12 +10,18 @@ def draw_title_screen(screen, font, background_image):
 
 
 def draw_timer(screen, font):
-    """左上に残り時間を表示"""
+    """右上に残り時間を表示（ガチャ画面用）"""
     remaining = get_remaining_time()
-    text = f"残り時間: {remaining} 秒"
-    # 👇 引数の順番とカッコを修正
-    font.render_to(screen, (20, 20), text, RED)
 
+    # 残り10秒以下なら点滅
+    if remaining <= 10:
+        # 0.5秒ごとに赤と白を切り替える
+        color = (255, 0, 0) if (pygame.time.get_ticks() // 500) % 2 == 0 else (255, 255, 255)
+    else:
+        color = RED
+
+    text = f"残り時間: {remaining} 秒"
+    font.render_to(screen, (screen.get_width() - 777, 20), text, color)
 
 def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
     # 背景画像の描画
@@ -59,6 +65,22 @@ def draw_gatcha_screen(screen, fonts, ramen_count, last_pulled, ramen_images):
             scaled_image = pygame.transform.scale(image, (250, 250))
             screen.blit(scaled_image, (275, 50))
 
+def draw_gameclear_screen(screen, font, ramen_count):
+    """ゲームクリア画面を描画"""
+    screen.fill((0, 0, 0))  # 背景を黒に
+
+    # メインメッセージ
+    main_text = "おめでとう！全ラーメン制覇！"
+    font.render_to(screen, (100, 250), main_text, (255, 215, 0))  # 金色
+
+    # 残り時間表示
+    remaining = get_remaining_time()
+    time_text = f"残り時間: {remaining} 秒"
+    font.render_to(screen, (100, 350), time_text, (255, 100, 100))  # 赤色
+
+    # ガチャ回数表示
+    count_text = f"ガチャ回数: {ramen_count}"
+    font.render_to(screen, (100, 400), count_text, (0, 255, 0))  # 緑色
 
 def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pulls):
     # 背景画像を描画
@@ -95,3 +117,10 @@ def draw_encyclopedia_screen(screen, fonts, encyclopedia, ramen_data, total_pull
     rate = int((discovered / len(ramen_data)) * 100)
     fonts[2].render_to(screen, (50, y + 20), f"コンプリート率: {rate}%", BLACK)
     fonts[2].render_to(screen, (50, y + 50), f"ガチャ回数: {total_pulls}", BLACK)
+
+def draw_gameover_screen(screen, font):
+    screen.fill((0, 0, 0))
+    text1 = "残念！時間切れです…"
+    text2 = "もう一度挑戦してください！"
+    font.render_to(screen, (100, 250), text1, (255, 0, 0))
+    font.render_to(screen, (100, 300), text2, (255, 100, 100))
